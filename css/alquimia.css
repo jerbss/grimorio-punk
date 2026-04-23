@@ -253,28 +253,39 @@ h1, h2, h3, h4 {
 .carousel-image {
     width: 100%;
     height: auto;
-    display: block;
+    display: none;
     border-radius: 2px; /* Slight radius to fit inside the border */
+}
+
+.carousel-container .carousel-image:first-child {
+    display: block;
 }
 
 .carousel-nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 42, 133, 0.2);
-    border: 1px solid var(--accent-magenta);
-    color: var(--accent-magenta);
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
+    background: rgba(8, 9, 12, 0.45);
+    border: 1px solid rgba(255, 42, 133, 0.45);
+    color: rgba(255, 42, 133, 0.75);
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 10;
+    opacity: 0.45;
 }
 
 .carousel-nav:hover {
-    background: rgba(255, 42, 133, 0.4);
-    box-shadow: 0 0 15px var(--accent-magenta);
+    background: rgba(255, 42, 133, 0.2);
+    color: var(--accent-magenta);
+    box-shadow: 0 0 8px rgba(255, 42, 133, 0.45);
+    opacity: 0.9;
+}
+
+.image-carousel:hover .carousel-nav {
+    opacity: 0.75;
 }
 
 .carousel-nav.prev {
@@ -455,8 +466,7 @@ main {
         inset 0 0 40px rgba(0,0,0,0.05); /* Vinheta interna */
     filter: sepia(15%) brightness(0.9) contrast(1.05);
     border-radius: 2px; /* Papel quase não tem borda arredondada */
-    transform: rotate(-1deg); /* Um levíssimo "jogado na mesa" */
-    transition: transform 0.4s ease, filter 0.4s ease;
+    transition: filter 0.4s ease;
 }
 
 /* Foto placeholder (pra você ver como fica na tela) */
@@ -469,7 +479,6 @@ main {
 
 .project-image:hover .card-image-placeholder,
 .project-image:hover img {
-    transform: rotate(0deg) scale(1.02);
     filter: sepia(0%) brightness(1) contrast(1.1); /* "Acende" a foto ao passar o mouse */
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 10px 20px rgba(0, 0, 0, 0.5);
 }

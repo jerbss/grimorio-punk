@@ -176,11 +176,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const carousels = document.querySelectorAll('.image-carousel');
     carousels.forEach(carousel => {
         const images = carousel.querySelectorAll('.carousel-image');
-        const dots = carousel.querySelectorAll('.dot');
+        const dotsContainer = carousel.querySelector('.carousel-dots');
         const prevBtn = carousel.querySelector('.carousel-nav.prev');
         const nextBtn = carousel.querySelector('.carousel-nav.next');
         
         let currentIndex = 0;
+
+        if (dotsContainer) {
+            dotsContainer.innerHTML = '';
+            images.forEach((_, index) => {
+                const dot = document.createElement('span');
+                dot.className = 'dot';
+                dot.dataset.index = index;
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        const dots = carousel.querySelectorAll('.dot');
 
         function updateCarousel(index) {
             // Wrap around
@@ -203,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Esconde botões e dots se houver apenas 1 imagem
             if (prevBtn) prevBtn.style.display = 'none';
             if (nextBtn) nextBtn.style.display = 'none';
-            const dotsContainer = carousel.querySelector('.carousel-dots');
             if (dotsContainer) dotsContainer.style.display = 'none';
         } else {
             // Botões de navegação
