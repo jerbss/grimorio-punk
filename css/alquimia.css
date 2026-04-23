@@ -232,6 +232,81 @@ h1, h2, h3, h4 {
     transform: rotateY(180deg);
 }
 
+/* CAROUSEL GAMIFICADO DE IMAGENS */
+.image-carousel {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.carousel-container {
+    position: relative;
+    width: fit-content;
+    border: 2px solid var(--accent-magenta);
+    border-radius: 4px;
+    box-shadow: 0 0 20px var(--accent-magenta), inset 0 0 30px rgba(255, 42, 133, 0.1);
+    overflow: hidden;
+    background: #1a1a1a;
+}
+
+.carousel-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px; /* Slight radius to fit inside the border */
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 42, 133, 0.2);
+    border: 1px solid var(--accent-magenta);
+    color: var(--accent-magenta);
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-nav:hover {
+    background: rgba(255, 42, 133, 0.4);
+    box-shadow: 0 0 15px var(--accent-magenta);
+}
+
+.carousel-nav.prev {
+    left: 10px;
+}
+
+.carousel-nav.next {
+    right: 10px;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 42, 133, 0.3);
+    border: 1px solid var(--accent-magenta);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: var(--accent-magenta);
+    box-shadow: 0 0 10px var(--accent-magenta);
+}
+
 .card-front, .card-back {
     position: absolute;
     width: 100%;

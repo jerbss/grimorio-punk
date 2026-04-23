@@ -171,4 +171,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
     sections.forEach(section => observer.observe(section));
+
+    // CAROUSEL GAMIFICADO
+    const carousels = document.querySelectorAll('.image-carousel');
+    carousels.forEach(carousel => {
+        const images = carousel.querySelectorAll('.carousel-image');
+        const dots = carousel.querySelectorAll('.dot');
+        const prevBtn = carousel.querySelector('.carousel-nav.prev');
+        const nextBtn = carousel.querySelector('.carousel-nav.next');
+        
+        let currentIndex = 0;
+
+        function updateCarousel(index) {
+            // Wrap around
+            if (index >= images.length) currentIndex = 0;
+            else if (index < 0) currentIndex = images.length - 1;
+            else currentIndex = index;
+
+            // Atualiza visibilidade das imagens
+            images.forEach((img, i) => {
+                img.style.display = i === currentIndex ? 'block' : 'none';
+            });
+
+            // Atualiza dots
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        if (images.length <= 1) {
+            // Esconde botões e dots se houver apenas 1 imagem
+            if (prevBtn) prevBtn.style.display = 'none';
+            if (nextBtn) nextBtn.style.display = 'none';
+            const dotsContainer = carousel.querySelector('.carousel-dots');
+            if (dotsContainer) dotsContainer.style.display = 'none';
+        } else {
+            // Botões de navegação
+            if (prevBtn) prevBtn.addEventListener('click', () => updateCarousel(currentIndex - 1));
+            if (nextBtn) nextBtn.addEventListener('click', () => updateCarousel(currentIndex + 1));
+
+            // Dots clicáveis
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => updateCarousel(i));
+            });
+        }
+
+        // Inicializa na primeira imagem
+        updateCarousel(0);
+    });
 });
