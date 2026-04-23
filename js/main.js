@@ -11,9 +11,10 @@ function shuffle(array) {
     }
 }
 
-// Função para dispor as cartas restantes em Leque (em Arco Lado a Lado)
+// Função para dispor as cartas em Leque (em Arco Lado a Lado)
+// NOTA: Usa TODAS as cartas (incluindo fantasmas) para manter ângulos constantes
 function updateFan() {
-    const cards = document.querySelectorAll('.tarot-card:not(.drawn)');
+    const cards = document.querySelectorAll('.tarot-card');
     const count = cards.length;
     
     // Se acabaram as cartas, esconde a mesa de leitura
