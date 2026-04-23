@@ -433,10 +433,72 @@ main {
     align-items: center;
 }
 
+/* ========== RESPONSIVIDADE E MOBILE UX ========== */
 @media (max-width: 850px) {
     .project-content {
         grid-template-columns: 1fr;
         gap: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    /* O Leque no celular precisa se sobrepor como uma mão de cartas reais */
+    .card-fan {
+        gap: 0px; /* Anula o gap e usa margin */
+        padding: 0 10px;
+        transform: scale(0.9); /* Reduz levemente para não vazar a tela */
+    }
+
+    .tarot-card {
+        /* Aumentamos a transição para focar no touch do usuário */
+        margin: 0 -25px; /* Margem negativa feroz para o efeito "mão embaralhada" */
+    }
+
+    /* Feedback de UX no toque (ou hover no drag) para não esbarrar na carta errada */
+    .tarot-card:active,
+    .tarot-card:focus,
+    .tarot-card:hover {
+        z-index: 100 !important;
+        transform: translateY(-30px) scale(1.1) !important;
+        filter: drop-shadow(0 0 15px var(--accent-magenta));
+    }
+
+    /* Leitura limpa e fluida do texto Punk no celular */
+    .project-section {
+        padding: 60px 20px; /* Teto e chão generosos, laterais pro respiro */
+    }
+
+    .project-title {
+        font-size: 2.2rem;
+        line-height: 1.1;
+        letter-spacing: 0;
+        word-break: break-word;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        margin-top: 15px;
+    }
+
+    .project-description p {
+        font-size: 1rem;
+        line-height: 1.8;
+        padding-right: 5px;
+    }
+    
+    .card-image-placeholder, .project-image img {
+        max-width: 100%;
+        border-width: 15px 15px 40px 15px; /* Mantendo a vibe polaroid mas proporcional */
+    }
+    
+    #reading-table {
+        padding: 50px 0; /* Remove padding lateral que amassa a mesa */
+    }
+    
+    .instruction-text {
+        font-size: 0.8rem;
+        padding: 0 15px;
+        line-height: 1.5;
     }
 }
 
