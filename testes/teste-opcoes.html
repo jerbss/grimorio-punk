@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testador de Estéticas - Portfólio Laboratório</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .opcoes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        button {
+            padding: 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-pergaminho {
+            background: #fdfbf7;
+            color: #2c2a28;
+            border: 2px solid #d3cbbd;
+        }
+        
+        .btn-pergaminho:hover {
+            background: #e8dcc8;
+        }
+        
+        .btn-grimorio {
+            background: #1a1a1a;
+            color: #d4af37;
+            border: 2px solid #8b7355;
+        }
+        
+        .btn-grimorio:hover {
+            background: #2a2a25;
+        }
+        
+        .btn-geometria {
+            background: #fafaf8;
+            color: #2c2a28;
+            border: 2px solid #b4aaa0;
+        }
+        
+        .btn-geometria:hover {
+            background: #e8dcc8;
+        }
+        
+        .viewer {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            height: 700px;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .info {
+            background: #333;
+            color: #fff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .info h3 {
+            margin-bottom: 10px;
+            color: #d4af37;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔮 Testador de Estéticas - Portfólio Laboratório</h1>
+        
+        <div class="opcoes">
+            <button class="btn-pergaminho" onclick="carregarOpcao('pergaminho')">
+                ✨ Pergaminho Místico
+            </button>
+            <button class="btn-grimorio" onclick="carregarOpcao('grimorio')">
+                📖 Grimório Velado
+            </button>
+            <button class="btn-geometria" onclick="carregarOpcao('geometria')">
+                ◆ Geometria Sagrada
+            </button>
+        </div>
+        
+        <div class="viewer">
+            <iframe id="preview" src="preview-pergaminho.html"></iframe>
+        </div>
+        
+        <div class="info" id="info">
+            <h3>📋 Pergaminho Místico</h3>
+            <p><strong>Vibe:</strong> Claro, acolhedor, papel em destaque</p>
+            <p><strong>Fundo:</strong> Creme (#fdfbf7) com sutil pontilhado</p>
+            <p><strong>Tipografia:</strong> Cinzel + Cormorant Garamond</p>
+            <p><strong>Molduras:</strong> Simples, linhas finas, muito respeitoso com as imagens</p>
+            <p><strong>Melhor para:</strong> Quando quer que as fotos em papel branco sejam protagonistas</p>
+        </div>
+    </div>
+
+    <script>
+        function carregarOpcao(opcao) {
+            const iframe = document.getElementById('preview');
+            const info = document.getElementById('info');
+            
+            const informacoes = {
+                pergaminho: {
+                    arquivo: 'preview-pergaminho.html',
+                    titulo: '✨ Pergaminho Místico',
+                    vibe: 'Claro, acolhedor, papel em destaque',
+                    fundo: 'Creme (#fdfbf7) com sutil pontilhado',
+                    tipografia: 'Cinzel + Cormorant Garamond',
+                    molduras: 'Simples, linhas finas, muito respeitoso com as imagens',
+                    melhorPara: 'Quando quer que as fotos em papel branco sejam protagonistas'
+                },
+                grimorio: {
+                    arquivo: 'preview-grimorio.html',
+                    titulo: '📖 Grimório Velado',
+                    vibe: 'Escuro, luxuoso, fotos em molduras douradas',
+                    fundo: 'Preto profundo (#1a1a1a) com efeito veludo',
+                    tipografia: 'Cinzel + Cormorant Garamond em dourado',
+                    molduras: 'Grossas, bordas duplas, moldura interna laminada dourada',
+                    melhorPara: 'Quando quer drama e contraste, fazendo as imagens "brilharem"'
+                },
+                geometria: {
+                    arquivo: 'preview-geometria.html',
+                    titulo: '◆ Geometria Sagrada Limpa',
+                    vibe: 'Minimalista, blueprint, linhas geométricas',
+                    fundo: 'Branco gelo (#fafaf8) com grid sutil',
+                    tipografia: 'Cinzel pura, espaçamento generoso',
+                    molduras: 'Linhas simples, círculos ao hover, formas geométricas',
+                    melhorPara: 'Quando quer elegância extrema e foco total no conteúdo'
+                }
+            };
+            
+            const dados = informacoes[opcao];
+            iframe.src = dados.arquivo;
+            
+            info.innerHTML = `
+                <h3>${dados.titulo}</h3>
+                <p><strong>Vibe:</strong> ${dados.vibe}</p>
+                <p><strong>Fundo:</strong> ${dados.fundo}</p>
+                <p><strong>Tipografia:</strong> ${dados.tipografia}</p>
+                <p><strong>Molduras:</strong> ${dados.molduras}</p>
+                <p><strong>Melhor para:</strong> ${dados.melhorPara}</p>
+            `;
+        }
+        
+        // Carregar primeira opção por padrão
+        window.addEventListener('load', () => {
+            carregarOpcao('pergaminho');
+        });
+    </script>
+</body>
+</html>

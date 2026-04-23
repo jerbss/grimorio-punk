@@ -1,0 +1,456 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* ALQUIMIA URBANA - Grimório Punk (Dark Mode) */
+
+:root {
+    --bg-color: #101113; /* Asfalto/Mesa escura */
+    --surface-color: #17181b; /* Elevação 1 */
+    --text-main: #d8d8d8; /* Prata/Osso */
+    --text-muted: #84868b;
+    --accent-magenta: #ff2a85; /* A caneta rosa choque */
+    --accent-glow: rgba(255, 42, 133, 0.15);
+    --border-color: #27282d;
+    --paper-white: #f5f5f5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    background-image: 
+        radial-gradient(circle at 50% 0%, #1a1b20 0%, transparent 70%),
+        linear-gradient(rgba(255, 42, 133, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 42, 133, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 30px 30px, 30px 30px;
+    background-attachment: fixed;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+    color: #f0f0f0;
+}
+
+/* Tipografia de Máquina de Escrever para detalhes técnicos/manuais */
+.mono-text, .nav-link, .arcano-number, .card-number, .footer-note {
+    font-family: 'Space Mono', monospace;
+}
+
+/* ========== HERO ========== */
+#hero {
+    padding: 100px 20px 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    background: radial-gradient(ellipse at top, var(--surface-color) 0%, transparent 100%);
+}
+
+#hero::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 1px;
+    background: var(--accent-magenta);
+    box-shadow: 0 0 15px var(--accent-magenta);
+}
+
+#hero h1 {
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+#hero > p {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ========== NAVEGAÇÃO LATERAL (PILAR MÍSTICO) ========== */
+.side-nav {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 100;
+}
+
+/* Elementos "trancados" */
+.side-link.locked {
+    opacity: 0.1;
+    pointer-events: none;
+    transform: translateX(-20px);
+}
+
+.side-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.5s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+}
+
+.return-deck {
+    font-size: 1.8rem;
+    color: var(--accent-magenta);
+}
+
+.return-deck::after {
+    display: none; /* Remove a linha vertical rosa lateral deste botão específico */
+}
+
+.nav-separator {
+    width: 1px;
+    height: 25px;
+    background: var(--border-color);
+    margin: 0 auto;
+}
+
+.side-link::after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    width: 2px;
+    height: 0;
+    background: var(--accent-magenta);
+    transition: height 0.3s ease;
+    box-shadow: 0 0 10px var(--accent-magenta);
+}
+
+.side-link:hover, .side-link.active {
+    color: var(--accent-magenta);
+    text-shadow: 0 0 8px var(--accent-glow);
+}
+
+.side-link.active::after {
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .side-nav {
+        display: none; /* Esconde no mobile, foco na rolagem natural */
+    }
+}
+
+/* ========== A MESA DE LEITURA (O LEQUE) ========== */
+#reading-table {
+    padding: 80px 20px;
+    text-align: center;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.instruction-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--accent-magenta);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 60px;
+    animation: misticaOpacity 3s infinite alternate;
+}
+
+@keyframes misticaOpacity {
+    0% { opacity: 0.5; text-shadow: 0 0 5px transparent; }
+    100% { opacity: 1; text-shadow: 0 0 15px var(--accent-glow); }
+}
+
+.card-fan {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* Distribui as cartas lado a lado com espaço generoso */
+}
+
+/* O modelo de Carta 3D */
+.tarot-card {
+    position: relative;
+    width: 140px;
+    height: 240px;
+    perspective: 1000px;
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s, z-index 0s;
+}
+
+.tarot-card.drawn {
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-100px) rotate(0deg) scale(0.8) !important;
+    transition: none !important; /* Remove transição para desaparecer instantaneamente */
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform-style: preserve-3d;
+}
+
+.tarot-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+/* O Fundo Misterioso da Carta (A Arte do Baralho) */
+.card-front {
+    background-color: var(--surface-color);
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255, 42, 133, 0.05) 5px, rgba(255, 42, 133, 0.05) 10px),
+        repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(255, 42, 133, 0.05) 5px, rgba(255, 42, 133, 0.05) 10px);
+    box-shadow: 
+        inset 0 0 20px rgba(0,0,0,0.8),
+        0 10px 20px rgba(0,0,0,0.5);
+    border: 2px solid #2a111a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* O Símbolo Oculto nas Costas da Carta */
+.card-front::after {
+    content: '◈';
+    font-size: 3rem;
+    color: var(--accent-magenta);
+    opacity: 0.15;
+}
+
+/* A Face Revelada (O Número Romano) */
+.card-back {
+    background-color: #1a1c20;
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: var(--accent-magenta);
+    box-shadow: 0 0 30px var(--accent-glow), 0 10px 20px rgba(0,0,0,0.8);
+}
+
+.card-roman {
+    font-family: 'Space Mono', monospace;
+    font-size: 4rem;
+    color: var(--accent-magenta);
+    text-shadow: 0 0 20px var(--accent-magenta);
+}
+
+/* Seções Trancadas (Inicialmente Invisíveis) */
+.project-section {
+    display: none;
+    opacity: 0;
+    animation: emergeSection 1.2s forwards ease-out;
+}
+
+@keyframes emergeSection {
+    from { opacity: 0; transform: translateY(40px); filter: blur(5px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* ========== SEÇÕES DE PROJETO ========== */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.project-section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border-color);
+    scroll-margin-top: 80px;
+}
+
+.project-section:last-of-type {
+    border-bottom: none;
+}
+
+.project-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.arcano-number {
+    display: inline-block;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: var(--accent-magenta);
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    background: var(--accent-glow);
+    border-radius: 2px;
+}
+
+.project-header h2 {
+    font-size: 3rem;
+    letter-spacing: 1px;
+    margin: 10px 0;
+}
+
+.project-subtitle {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+}
+
+.project-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+@media (max-width: 850px) {
+    .project-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+/* INTEGRAÇÃO DAS IMAGENS TIPO PAPEL/FOTO */
+.project-image {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.card-image-placeholder, .project-image img {
+    width: 100%;
+    max-width: 450px;
+    /* Sensação de folha de papel na mesa escura */
+    background-color: var(--paper-white); 
+    color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    
+    /* Efeito anti-colagem (Luz ambiente e sombra projetada grossa) */
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.7),
+        0 5px 15px rgba(0, 0, 0, 0.4),
+        inset 0 0 40px rgba(0,0,0,0.05); /* Vinheta interna */
+    filter: sepia(15%) brightness(0.9) contrast(1.05);
+    border-radius: 2px; /* Papel quase não tem borda arredondada */
+    transform: rotate(-1deg); /* Um levíssimo "jogado na mesa" */
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* Foto placeholder (pra você ver como fica na tela) */
+.card-image-placeholder {
+    aspect-ratio: 3/4;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.project-image:hover .card-image-placeholder,
+.project-image:hover img {
+    transform: rotate(0deg) scale(1.02);
+    filter: sepia(0%) brightness(1) contrast(1.1); /* "Acende" a foto ao passar o mouse */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.project-description h3 {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.project-description h3::before {
+    content: '◆';
+    font-size: 0.8rem;
+    color: var(--accent-magenta);
+}
+
+.project-description h3:first-child {
+    margin-top: 0;
+}
+
+.project-description p {
+    margin-bottom: 20px;
+    color: var(--text-main);
+    text-align: justify;
+}
+
+/* Destacando palavras como se fossem marcadas a magenta */
+.highlight {
+    color: var(--accent-magenta);
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* ========== RODAPÉ ========== */
+footer {
+    padding: 50px 20px;
+    text-align: center;
+    background: var(--surface-color);
+    border-top: 1px solid var(--border-color);
+    margin-top: 60px;
+}
+
+footer p {
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+.footer-note {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
