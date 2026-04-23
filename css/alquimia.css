@@ -521,7 +521,6 @@ main {
 footer {
     padding: 50px 20px;
     text-align: center;
-    background: var(--surface-color);
     border-top: 1px solid var(--border-color);
     margin-top: 60px;
 }
@@ -537,4 +536,47 @@ footer p {
     color: #555;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+/* Footer Social Links */
+footer .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px 0;
+}
+footer .social-links a {
+    color: var(--card-glow, #ff2a85);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+footer .social-links a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #ff2a85;
+}
+footer .footer-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Reset Button */
+.reset-chaos-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background: none;
+    border: 1px solid var(--card-glow, #ff2a85);
+    color: var(--card-glow, #ff2a85);
+    font-family: inherit;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.reset-chaos-btn:hover {
+    background: var(--card-glow, #ff2a85);
+    color: #101113;
+    box-shadow: 0 0 15px var(--card-glow, #ff2a85);
 }

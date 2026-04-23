@@ -130,6 +130,26 @@ document.addEventListener('DOMContentLoaded', () => {
                         updateFan();
                         scrollTo(`#projeto-${projectId}`);
                         isDrawing = false;
+                        
+                        // Quando todas as cartas forem puxadas
+                        if (unrevealedProjects.length === 0) {
+                            const message = document.querySelector('.instruction-text');
+                            if (message) {
+                                message.innerHTML = 'TODOS OS <span class="highlight">MISTÉRIOS</span> JÁ FORAM REVELADOS.';
+                            }
+                            
+                            // Diminui a mesa para não ocupar espaço vazio
+                            const readingTable = document.getElementById('reading-table');
+                            if (readingTable) {
+                                readingTable.style.minHeight = '150px';
+                                readingTable.style.transition = 'min-height 1s ease-out';
+                            }
+                            
+                            // Esconde o container fantasma do leque
+                            if (fanContainer) {
+                                fanContainer.style.display = 'none';
+                            }
+                        }
                     }, 500); 
                     
                 }, 1600); // 1.6 segundos admirando a carta antes do pulo
@@ -229,5 +249,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Inicializa na primeira imagem
         updateCarousel(0);
+    });
+});
+// Copiar Discord
+document.querySelector('.copy-discord')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const btn = e.currentTarget;
+    const discordTag = btn.getAttribute('data-discord');
+    navigator.clipboard.writeText(discordTag).then(() => {
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<span style="font-size:14px; display:flex; align-items:center; height:24px;">Copiado!</span>';
+        setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
     });
 });
